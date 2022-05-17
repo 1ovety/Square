@@ -88,7 +88,7 @@
         
         <!-- before sign in -->
         
-        <form id="login-form" action="" method="post">
+        <form id="login-form" action="/square/login.me" method="post">
 
             <table>
                 <tr>
