@@ -101,8 +101,8 @@
                 </tr>
                 <tr>
                     <th colspan="2">
-                        <button type="submit">sign up</button>
-                        <button type="button">sign out</button>
+                        <button type="submit">sign in</button>
+                        <button type="button">sign up</button>
                     </th>
                 </tr>
             </table>  
@@ -186,6 +186,7 @@
     </div>
 
     <div>
+    
         <tr>
             <th>userId</th>
             <td>title</td>
@@ -197,7 +198,6 @@
             <td>title</td>
             <td>like</td>
         </tr>
-
 
         <tr>
             <th>userId</th>
