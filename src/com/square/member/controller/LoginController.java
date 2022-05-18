@@ -52,8 +52,35 @@ public class LoginController extends HttpServlet {
 		// System.out.println(loginUser); excute the user's infromation who signed in and success
 		
 		/*
-		 * if there is some information to send, should be restored replied page
+		 * if there is some information to send, should be saved on the replied page ( *JSP scope built-in Object /4things)
+		 * 1. Application : the saved data in application, it can be used every area of web application 
+		 * 2. session : the saved data in session, it can be used every JSP and servlet
+		 * 				whenever user take and use the data until user delete, stop a server or close the browser 
+		 * 				It is one Object who built in every one browser.
+		 * 				After close the browser, the session is expired
+		 * 3. request : the saved data in request only used at JSP being forward
+		 * 			    I can see it is one-time
+		 * 4. page : only take and use at following JSP page
+		 * 
+		 *  Application > Session > Request > Page
+		 *  
+		 *  if I want to put some data, use .setAttribute("key", value)
+		 *  if I want to use the data, use .getAttribute("key")
+		 *  if I want to delete the data, use .removeAttribute("key")
+		 *  
 		 */
+		
+		if(loginUser == null) { // sign in fail - > request error page
+			
+			request.setAttribute("erroraMsg", "failed sign in");
+			
+			
+		} else { // sign in success - > request index page
+			
+			
+			
+		}
+		
 		
 	}
 
