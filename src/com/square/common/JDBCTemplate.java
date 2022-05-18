@@ -9,10 +9,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
+import oracle.jdbc.pool.OracleDataSource;
+
 public class JDBCTemplate {
 	
 	//method to return connection after create connection object(access db)
 	public static Connection getConnection() {
+		
 		
 		// key value from driver.properties
 		Properties prop = new Properties(); // Map collection(key-value)
@@ -29,6 +32,8 @@ public class JDBCTemplate {
 		
 		//decalare Connection
 		Connection conn = null;
+		
+		
 		
 		try {
 			//register jdbc driver
@@ -108,6 +113,8 @@ public class JDBCTemplate {
 		}
 		
 	}
+	
+	
 	
 	
 }

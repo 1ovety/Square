@@ -13,7 +13,7 @@ import com.square.member.model.vo.Member;
 /**
  * Servlet implementation class LoginController
  */
-@WebServlet("/square/login.me")
+@WebServlet("/signin.me")
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -49,7 +49,11 @@ public class LoginController extends HttpServlet {
 		Member loginUser = new MemberService().loginMember(userEmail, userPwd);
 		
 		// view using some result that user can see
-		System.out.println(loginUser);
+		// System.out.println(loginUser); excute the user's infromation who signed in and success
+		
+		/*
+		 * if there is some information to send, should be restored replied page
+		 */
 		
 	}
 
