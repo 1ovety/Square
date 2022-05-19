@@ -1,11 +1,14 @@
 package com.square.member.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.square.member.model.service.MemberService;
 import com.square.member.model.vo.Member;
@@ -72,13 +75,26 @@ public class LoginController extends HttpServlet {
 		
 		if(loginUser == null) { // sign in fail - > request error page
 			
-			request.setAttribute("erroraMsg", "failed sign in");
-			
+			request.setAttribute("errorMsg", "sign in failed");
+			// needed object when delegate request page to JSP (RequestDispatcher) 
+			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
+			// forwarding way to set requested view : Just show the decided view through path, url is not changed (URL is still same) 
+			view.forward(request, response);
 			
 		} else { // sign in success - > request index page
 			
+			// if access the session from sevlet, should bring the priority session Object
+			HttpSession session = request.getSession();
+			session.setAttribute("loginUser", loginUser);
 			
-			
+			// It is forwarding way
+			// It just show the jsp, this servlet mapping value is till in Url
+			// localhost:8888/square/login.me
+			//RequestDispatcher view = request.getRequestDispatcher("index.jsp");
+			//view.forward(request, response);
+
+			// sendRedirect way (recall a url)
+			response.sendRedirect("/");
 		}
 		
 		

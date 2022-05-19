@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.square.member.model.vo.Member"%>
+<%
+	
+
+	Member loginUser = (Member)session.getAttribute("loginUser");
+	// loading menubar.jsp before sigin in : value is null
+	//  loading menubar.jsp after sigin in : value is information of Member Object 
+
+ %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,9 +94,11 @@
     <h1 align="center"> Square </h1>
     <div class="login-area">
         
+        <%if(loginUser == null) { %>
+        
         <!-- before sign in -->
         
-        <form id="login-form" action="/signin.me" method="post">
+        <form id="login-form" action="<%= request.getContextPath() %>/signin.me" method="post">
 
             <table>
                 <tr>
@@ -109,15 +119,17 @@
 
         </form>
     
-        <!-- succesed sign in -->
-        <!--
-        <div id="user-info">
-            Welcome! 
-            <b><a href="">userId</a></b> 
-            <a href="">sign out</a>
-        </div>
-        -->
-
+    	<% }else{ %>
+    	
+	        <!-- succesed sign in -->
+	       
+	        <div id="user-info">
+	            Welcome! 
+	            <b><a href=""><%= loginUser.getUserId() %></a></b> 
+	            <a href="<%= request.getContextPath() %>/signout.me">sign out</a>
+	        </div>
+        
+		<% } %>
 
 
     </div>
