@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import com.square.common.JDBCTemplate;
+import static com.square.common.JDBCTemplate.*;
 import com.square.member.model.vo.Member;
 
 public class MemberDao {
@@ -63,15 +63,36 @@ public class MemberDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			JDBCTemplate.close(rset);
-			JDBCTemplate.close(pstmt);
+			close(rset);
+			close(pstmt);
 		}
 		
 		return m;
 		
+	}
+	
+	public int insertMember(Connection conn, Member m) {
+		//  insert statement = >  processed a number of rows
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertMember");
 		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, m.getUserEmail());
+			pstmt.setString(2, m.getUserId());
+			pstmt.setString(3, m.getUserPwd());
+			
+			result = pstmt.executeUpdate();
 		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
 		
+		return result;
+	
 	}
 
 }

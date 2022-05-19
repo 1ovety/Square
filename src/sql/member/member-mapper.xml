@@ -19,6 +19,24 @@
 	
 	</entry>
 	
+	<entry key="insertMember">
+		INSERT 
+		  INTO MEMBER
+			  (
+			    USER_NO
+			  , USER_EMAIL
+			  , USER_ID
+			  , USER_PWD
+			 )
+		VALUES
+			 (
+			   SEQ_UNO.NEXTVAL
+			  , ?
+			  , ?
+			  , ?
+		      )
+	</entry>
+	
 
 
 </properties>

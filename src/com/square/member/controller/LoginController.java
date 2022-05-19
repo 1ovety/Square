@@ -86,6 +86,7 @@ public class LoginController extends HttpServlet {
 			// if access the session from sevlet, should bring the priority session Object
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", loginUser);
+			session.setAttribute("alertMsg", "sign in succesed!");
 			
 			// It is forwarding way
 			// It just show the jsp, this servlet mapping value is till in Url

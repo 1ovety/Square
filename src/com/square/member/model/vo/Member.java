@@ -29,6 +29,13 @@ public class Member {
 		this.status = status;
 	}
 
+	public Member(String userEmail, String userId, String userPwd) {
+		super();
+		this.userEmail = userEmail;
+		this.userId = userId;
+		this.userPwd = userPwd;
+	}
+
 
 	public int getUserNo() {
 		return userNo;

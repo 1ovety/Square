@@ -2,17 +2,21 @@
     pageEncoding="UTF-8" import="com.square.member.model.vo.Member"%>
 <%
 	
-	String contextPath = request.getContextPath(); //"/"
+	String contextPath = request.getContextPath(); //"/square"
 
 	Member loginUser = (Member)session.getAttribute("loginUser"); 
 	// loading menubar.jsp before sigin in : value is null
 	//  loading menubar.jsp after sigin in : value is information of Member Object 
 
- %>
+	String alertMsg = (String)session.getAttribute("alertMsg");
+	// when roading menubar.jsp  before request service : null
+	// when roading menubar.jsp after request service : message through alert
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -74,9 +78,9 @@
     ul, li {
     margin: 0px;
     margin-top: 0px;
-    margin-right: 0px;
+    margin-right: 20px;
     margin-bottom: 0px;
-    margin-left: 0px;
+    margin-left: 20px;
     padding: 0px;
     padding-top: 0px;
     padding-right: 0px;
@@ -92,7 +96,23 @@
 </head>
 <body>
 
-    <h1 align="center"> Square </h1>
+	<script>
+	
+	 var msg = "<%= alertMsg %>"; 
+	 //don't forget the ""
+	 //without "" the value such as var msg = sign in successed ; it is wrong	 
+	 //var msg = "sign in successed";
+	 // var msg = "messge" or "null"
+	 
+	 if (msg !="null") {
+	 		alert(msg);
+	 		// after pop the alert, delete the message in session
+	 		// if it doesn't, everytime to loading this alert will be poped
+	 		<% session.removeAttribute ("alertMsg"); %>
+	 }
+	 
+	</script>
+    <h1 align="center"><a class="nav-link" href="<%= contextPath %>"> Square</a> </h1>
     <div class="login-area">
         
         <%if(loginUser == null) { %>
@@ -112,13 +132,29 @@
                 </tr>
                 <tr>
                     <th colspan="2">
-                        <button type="submit">sign in</button>
-                        <button type="button">sign up</button>
+                        <button type="submit">sign in</button> <!-- type is submit, value that user entered send to server  -->
+                        <button type="button" onclick="enrollPage();">sign up</button> <!-- type is button  -->
                     </th>
                 </tr>
             </table>  
 
         </form>
+        
+        <script>
+        // when click the sign up button, process this function
+        	function enrollPage (){
+        		// location.href = "<%= contextPath %>/views/member/memberEnrollForm.jsp"; 
+        		// The directory excute at url, the security has problem
+        		
+        		// even to request simple static page, must request servlet and using forwarding way
+        		// only servlet mapping value excute at url
+        		
+        		location.href = "<%=contextPath%>/enrollForm.me";
+        		
+        	}
+        	
+        
+        </script>
     
     	<% }else{ %>
     	
@@ -149,7 +185,7 @@
             <a class="nav-link" href="">Q&A</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">Square</a>
+            <a class="nav-link" href="">Board</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="">Contact us</a>
@@ -198,27 +234,7 @@
     
     </div>
 
-    <div>
     
-        <tr>
-            <th>userId</th>
-            <td>title</td>
-            <td>like</td>
-        </tr>
-
-        <tr>
-            <th>userId</th>
-            <td>title</td>
-            <td>like</td>
-        </tr>
-
-        <tr>
-            <th>userId</th>
-            <td>title</td>
-            <td>like</td>
-        </tr>
-        
-    </div>
 
 </body>
 </html>
