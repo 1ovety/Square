@@ -94,7 +94,8 @@ public class LoginController extends HttpServlet {
 			//view.forward(request, response);
 
 			// sendRedirect way (recall a url)
-			response.sendRedirect("/");
+			//response.sendRedirect("/");
+			response.sendRedirect(request.getContextPath());
 		}
 		
 		

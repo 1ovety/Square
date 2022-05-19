@@ -31,8 +31,8 @@ public class SignoutController extends HttpServlet {
 		request.getSession().invalidate();
 		
 		// request page => /  , recall url = > index.jsp
-		response.sendRedirect("/"); //contextpath is passible to change later so do not recommend
-		//response.sendRedirect(request.getContextPath());
+		//response.sendRedirect("/"); //contextpath is passible to change later so do not recommend
+		response.sendRedirect(request.getContextPath());
 		
 	}
 

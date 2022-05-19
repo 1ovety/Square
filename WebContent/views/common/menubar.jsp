@@ -2,8 +2,9 @@
     pageEncoding="UTF-8" import="com.square.member.model.vo.Member"%>
 <%
 	
+	String contextPath = request.getContextPath(); //"/"
 
-	Member loginUser = (Member)session.getAttribute("loginUser");
+	Member loginUser = (Member)session.getAttribute("loginUser"); 
 	// loading menubar.jsp before sigin in : value is null
 	//  loading menubar.jsp after sigin in : value is information of Member Object 
 
@@ -98,7 +99,7 @@
         
         <!-- before sign in -->
         
-        <form id="login-form" action="<%= request.getContextPath() %>/signin.me" method="post">
+        <form id="login-form" action="<%= contextPath %>/signin.me" method="post">
 
             <table>
                 <tr>
@@ -126,7 +127,7 @@
 	        <div id="user-info">
 	            Welcome! 
 	            <b><a href=""><%= loginUser.getUserId() %></a></b> 
-	            <a href="<%= request.getContextPath() %>/signout.me">sign out</a>
+	            <a href="<%= contextPath %>/signout.me">sign out</a>
 	        </div>
         
 		<% } %>
