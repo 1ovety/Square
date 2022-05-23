@@ -1,8 +1,14 @@
 package com.square.member.model.service;
 
-import java.sql.Connection;
+import static com.square.common.JDBCTemplate.close;
+import static com.square.common.JDBCTemplate.commit;
+import static com.square.common.JDBCTemplate.getConnection;
+import static com.square.common.JDBCTemplate.rollback;
 
-import static com.square.common.JDBCTemplate.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 import com.square.member.model.dao.MemberDao;
 import com.square.member.model.vo.Member;
 
@@ -46,5 +52,28 @@ public class MemberService {
 		return result;
 	}
 	
+	
+	public Member updateMember( String userId, String userEmail, String userPwd) {
+
+		
+		 //update Statement
+			
+			
+			Connection conn = getConnection();
+			int result = new MemberDao().updateMember(conn, userEmail,  userPwd, userId);
+			
+			Member updateMem = null;
+			if(result > 0) {
+				commit(conn);
+				updateMem = new MemberDao().selectMember(conn, userId);
+			
+			} else {
+				rollback(conn);
+			}
+				close(conn);
+				
+				return updateMem;
+		}
+
 	
 }

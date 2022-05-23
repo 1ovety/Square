@@ -37,6 +37,32 @@
 		      )
 	</entry>
 	
+	<entry key="updateMember">
+		UPDATE
+				MEMBER
+		SET		
+				USER_EMAIL = ?
+			,	USER_PWD = ?
+			,   MODIFY_DATE = SYSDATE
+	    WHERE 	USER_ID = ?
+	</entry>
+	
+	<entry key="selectMember">
+	 	SELECT 
+		        USER_NO,
+		        USER_EMAIL,
+		        USER_ID,
+		        USER_PWD,
+		        ENROLL_DATE,
+		        MODIFY_DATE,
+		        STATUS
+		  FROM 	MEMBER
+		 WHERE	USER_ID = ?
+		   AND	STATUS = 'Y'
+	 			
+	
+	</entry>
+	
 
 
 </properties>

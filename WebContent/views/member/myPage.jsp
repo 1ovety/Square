@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"  %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +20,11 @@
 <body>
 
     <%@ include file="../common/menubar.jsp" %>
+    
+    <% 
+	    String userEmail = loginUser.getUserEmail();	
+	    String userId = loginUser.getUserId();
+    %>
 
     <div class="outer">
  
@@ -26,29 +32,26 @@
         <h2 align="center">My Account</h2>
 
 		<br>
-        <form action="<%= contextPath %>/insert.me" id="mypage-form" method="POST">
+        <form action="<%= contextPath %>/update.me" id="mypage-form" method="POST">
 
             <table>
                 <tr>
                     <td>*Email</td>
-                    <td><input type="text" name="userEmail" maxlength="12" required></td>
+                    <td><input type="text" name="userEmail" maxlength="12" required value="<%= userEmail %>"></td>
                     <td><button type="button" class="btn btn-outline-dark">check</button></td>
                 </tr>
                 <tr>
                     <td>*id</td>
-                    <td><input type="text" name="userId" maxlength="20" value="" readonly></td>
-                </tr>
-                <tr><td></td>
-                    <td>Can not chage this id</td>
-                </tr>
+                    <td><input type="text" name="userId" maxlength="20" value="<%= userId %>" readonly></td>
+      				<td> (can not change your id)</td>
                 <tr>
                     <td>*password</td>
-                    <td><input type="password" name="userPwd" maxlength="15" required placeholder="xxxxxxxxxxxx"></td>
+                    <td><input type="password" name="userPwd" maxlength="15" required ></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td>*check password</td>
-                    <td><input type="password" maxlength="15" required></td>
+                    <td><input type="password" maxlength="15" name="updatePwd" required></td>
                     <td></td>
                 </tr>
                 <tr>
@@ -61,7 +64,7 @@
                 </tr>
                 
             </table>
-
+            
             <br><br>
             <div align="center">
                 <button type="submit" class="btn btn-outline-secondary">change</button>
@@ -71,6 +74,17 @@
             <br><br>
 
         </form>
+		        
+        <script>
+        
+	        function validatePwd(){
+	    		if($("input[name=userPwd]").val() != $("input[name=updatePwd]").val){
+	    			alert("failed");
+	    			return false;
+	    		}
+	    	}
+        
+        </script>
     </div>
 </body>
 </html>

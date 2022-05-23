@@ -1,5 +1,7 @@
 package com.square.member.model.dao;
 
+import static com.square.common.JDBCTemplate.close;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -8,7 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import static com.square.common.JDBCTemplate.*;
 import com.square.member.model.vo.Member;
 
 public class MemberDao {
@@ -94,5 +95,62 @@ public class MemberDao {
 		return result;
 	
 	}
+	
+	public int updateMember(Connection conn,String userEmail, String userId, String userPwd) {
+	
 
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
+			pstmt.setString(2, userPwd);
+			pstmt.setString(3, userEmail);
+			
+			result =pstmt.executeUpdate();
+			
+		} catch (SQLException e) {			
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+	public Member selectMember(Connection conn, String userId) {
+		// select statement = . ResultSet Object (1 row)
+		Member updateMem = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				updateMem = new Member(rset.getInt("user_no"),
+						      rset.getString("user_email"),
+						      rset.getString("user_id"),
+						      rset.getString("user_pwd"),
+						      rset.getDate("enroll_date"),
+						      rset.getDate("modify_date"),
+						      rset.getString("status"));
+			}
+					
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return updateMem;
+	}
 }

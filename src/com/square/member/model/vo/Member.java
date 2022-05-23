@@ -36,6 +36,14 @@ public class Member {
 		this.userPwd = userPwd;
 	}
 
+	public Member(String userEmail, String userId, String userPwd, Date modifyDate) {
+		super();
+		this.userEmail = userEmail;
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.modifyDate = modifyDate;
+	}
+
 
 	public int getUserNo() {
 		return userNo;

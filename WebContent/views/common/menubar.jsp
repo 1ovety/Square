@@ -94,6 +94,19 @@
 }
 </style>
 </head>
+<!-- every page call the menubar.jsp. so add these link in this jsp file, every page can use the bootstrap -->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
 <body>
 
 	<script>
@@ -133,14 +146,17 @@
                 <tr>
                     <th colspan="2">
                         <button type="submit">sign in</button> <!-- type is submit, value that user entered send to server  -->
-                        <button type="button" onclick="enrollPage();">sign up</button> <!-- type is button  -->
+                        <button type="button"  onclick="enrollPage();">sign up</button> <!-- type is button  -->
                     </th>
                 </tr>
             </table>  
 
         </form>
         
+        
         <script>
+        
+ 
         // when click the sign up button, process this function
         	function enrollPage (){
         		// location.href = "<%= contextPath %>/views/member/memberEnrollForm.jsp"; 
@@ -162,7 +178,7 @@
 	       
 	        <div id="user-info">
 	            Welcome! 
-	            <b><a href=""><%= loginUser.getUserId() %></a></b> 
+	            <b><a href="<%= contextPath %>/myPage.me"> <!--data-toggle="modal" data-target="#myModal"   --> <%= loginUser.getUserId() %></a></b> 
 	            <a href="<%= contextPath %>/signout.me">sign out</a>
 	        </div>
         
@@ -170,6 +186,47 @@
 
 
     </div>
+    <!--  
+	    <!-- Modal 
+	<div id="myModal" class="modal fade" role="dialog" id="udatePwdForm">
+	  <div class="modal-dialog">
+	
+	    <!-- Modal content-
+	    <div class="modal-content">
+	    
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Check password</h4>
+	      </div>
+	      <div class="modal-body">
+	        	<form action="" method="post">
+	        		<table>
+	        			
+	        			<tr>
+	        				<td>password</td>
+	        				<td><input type="password" name="checkPwd"></td>
+	        			</tr>
+	        		
+	        		</table>
+	        				<br>
+	        		<button type="submit">Check</button>
+	        	</form>
+	      </div>
+	      -->
+	     <!--
+        <script>
+        function validatePwd(){
+        		if($("input[name=userPwd]").val() != $("input[name=checkPwd]").val){
+        			aler("failed");
+        			return false;
+        		}
+        	}
+        </script>
+	    -->
+	    </div>
+	
+	  </div>
+	</div>
 
 
     <br clear="both">

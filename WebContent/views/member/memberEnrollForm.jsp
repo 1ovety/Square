@@ -50,7 +50,7 @@
                 </tr>
                 <tr>
                     <td>*check password</td>
-                    <td><input type="password" maxlength="15" required></td>
+                    <td><input type="password" maxlength="15" name="checkPwd" required></td>
                     <td></td>
                 </tr>
                 <tr>
@@ -73,6 +73,98 @@
             <br><br>
 
         </form>
+        
+        <!-- message to check information / if user enter the wrong keyword show the error-->
+        <!--
+        <script>
+                    $(function() {
+                        var userId = false;
+                        var userPwd = false;
+                        var checkPwd = false;
+                        var idTag = $("#id");
+                        idTag.on("keyup", function() {
+                            var idReg = /^[-A-Za-z0-9_]+[-A-Za-z0-9_.]*[@]{1}[-A-Za-z0-9_]+[-A-Za-z0-9_.]*[.]{1}[A-Za-z]{2,5}$/;
+                            var image = $("#idimg");
+                            if( !idReg.test(idTag.val()) ) {
+                                image.attr("src", "images/eye127.png");
+                                idTag.css("color", "#EE5656");
+                                userId = false;
+                            }
+                            else {
+                                image.attr("src", "images/user7.png");
+                                idTag.css("color", "blue");
+                                userId = true;
+                            }
+                        });
+                        var pwTag = $("#password");
+                        pwTag.on("keyup", function() {
+                            var pwReg = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{7,16}$/;
+                            var image = $(".pwimg").eq(0);
+                            if( !pwReg.test(pwTag.val()) ) {
+                                image.attr("src", "images/eye127.png");
+                                pwTag.css("color", "#EE5656");
+                                passPw1 = false;
+                            }
+                            else {
+                                image.attr("src", "images/user7.png");
+                                pwTag.css("color", "blue");
+                                userPwd = true;
+                            }
+                        });
+
+
+                        var cpwTag = $("#cPassword");
+                        cpwTag.on("keyup", function() {
+                            var pwReg = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{7,16}$/;
+                            var image = $(".pwimg").eq(1);
+                            if( !pwReg.test(cpwTag.val()) ) {
+                                image.attr("src", "images/eye127.png");
+                                cpwTag.css("color", "#EE5656");
+                                checkPwd = false;
+                            }
+                            else {
+                                image.attr("src", "images/user7.png");
+                                cpwTag.css("color", "blue");
+                                checkPwd = true;
+                            }
+                        });
+
+
+                        var formTag = $("form").eq(0);
+                        formTag.on("submit", function() {
+                            var nameTag = $("#name");
+
+                            if(userId == false) {
+                                alert("Pleas eneter the right Id");
+                                idTag.focus();
+                                return false;
+                            } else if(userPwd == false) {
+                                alert("Please enter the right paaword");
+                                pwTag.focus();
+                                return false;
+                            } else if(checkPwd == false) {
+                                alert("It is not correct");
+                                cpwTag.focus();
+                                return false;
+                            } else {
+                                return true;
+                            }
+                        });
+                    });
+        </script>
+        -->
+
+        <!-- 
+        <script>
+        function validatePwd(){
+        		if($("input[name=userPwd]").val() != $("input[name=checkPwd]").val){
+        			aler("failed");
+        			return false;
+        		}
+        	}
+        </script>
+        
+         -->
     </div>
 </body>
 </html>
