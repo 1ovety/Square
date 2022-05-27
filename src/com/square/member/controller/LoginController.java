@@ -52,7 +52,7 @@ public class LoginController extends HttpServlet {
 		Member loginUser = new MemberService().loginMember(userEmail, userPwd);
 		
 		// view using some result that user can see
-		// System.out.println(loginUser); excute the user's infromation who signed in and success
+		// System.out.println(loginUser); execute the user's infromation who signed in and success
 		
 		/*
 		 * if there is some information to send, should be saved on the replied page ( *JSP scope built-in Object /4things)

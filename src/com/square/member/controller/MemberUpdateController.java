@@ -1,6 +1,7 @@
 package com.square.member.controller;
 
 import java.io.IOException;
+import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,13 +37,17 @@ public class MemberUpdateController extends HttpServlet {
 		String userId = request.getParameter("userId");
 		String userPwd = request.getParameter("userPwd");
 		
-		Member updateMem = new MemberService().updateMember(userId, userEmail, userPwd);
+		Member m = new Member(userEmail, userId, userPwd);
+		
+		Member updateMem = new MemberService().updateMember(m);
+		
 		// requset		
 		if(updateMem == null) { //fail
 			
-			request.setAttribute("errorMsg", "failed");
+			request.setAttribute("errorMsg", "Edit failed");
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 			
+
 		}else { //success
 			
 			HttpSession session = request.getSession();

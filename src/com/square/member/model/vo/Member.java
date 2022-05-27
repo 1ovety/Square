@@ -41,7 +41,6 @@ public class Member {
 		this.userEmail = userEmail;
 		this.userId = userId;
 		this.userPwd = userPwd;
-		this.modifyDate = modifyDate;
 	}
 
 

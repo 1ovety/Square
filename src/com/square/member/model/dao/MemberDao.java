@@ -5,6 +5,7 @@ import static com.square.common.JDBCTemplate.close;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -80,6 +81,7 @@ public class MemberDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			
 			pstmt.setString(1, m.getUserEmail());
 			pstmt.setString(2, m.getUserId());
 			pstmt.setString(3, m.getUserPwd());
@@ -96,9 +98,8 @@ public class MemberDao {
 	
 	}
 	
-	public int updateMember(Connection conn,String userEmail, String userId, String userPwd) {
+	public int updateMember(Connection conn, Member m) {
 	
-
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("updateMember");
@@ -106,11 +107,11 @@ public class MemberDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, userId);
-			pstmt.setString(2, userPwd);
-			pstmt.setString(3, userEmail);
+			pstmt.setString(1, m.getUserId());
+			pstmt.setString(2, m.getUserEmail());
+			pstmt.setString(3, m.getUserPwd());
 			
-			result =pstmt.executeUpdate();
+			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {			
 			e.printStackTrace();
@@ -130,17 +131,18 @@ public class MemberDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
 			
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
 				updateMem = new Member(rset.getInt("user_no"),
-						      rset.getString("user_email"),
-						      rset.getString("user_id"),
-						      rset.getString("user_pwd"),
-						      rset.getDate("enroll_date"),
-						      rset.getDate("modify_date"),
-						      rset.getString("status"));
+								      rset.getString("user_email"),
+								      rset.getString("user_id"),
+								      rset.getString("user_pwd"),
+								      rset.getDate("enroll_date"),
+								      rset.getDate("modify_date"),
+								      rset.getString("status"));
 			}
 					
 		} catch (SQLException e) {
@@ -150,7 +152,32 @@ public class MemberDao {
 			close(pstmt);
 		}
 		
-		
 		return updateMem;
+	}
+	
+	public int deleteMember(Connection conn, String userId, String userPwd) {
+		//update statement
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1,  userId);
+			pstmt.setString(2, userPwd);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+		
 	}
 }

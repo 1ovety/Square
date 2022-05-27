@@ -37,7 +37,7 @@
             <table>
                 <tr>
                     <td>*Email</td>
-                    <td><input type="text" name="userEmail" maxlength="12" required value="<%= userEmail %>"></td>
+                    <td><input type="text" name="userEmail" maxlength="30" required value="<%= userEmail %>"></td>
                     <td><button type="button" class="btn btn-outline-dark">check</button></td>
                 </tr>
                 <tr>
@@ -46,7 +46,7 @@
       				<td> (can not change your id)</td>
                 <tr>
                     <td>*password</td>
-                    <td><input type="password" name="userPwd" maxlength="15" required ></td>
+                    <td><input type="password" name="userPwd" maxlength="30" required ></td>
                     <td></td>
                 </tr>
                 <tr>
@@ -68,23 +68,41 @@
             <br><br>
             <div align="center">
                 <button type="submit" class="btn btn-outline-secondary">change</button>
-                <button type="reset" class="btn btn-outline-danger">withdraw</button>
+                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteForm">withdraw</button>
             </div>
 
             <br><br>
 
         </form>
-		        
-        <script>
-        
-	        function validatePwd(){
-	    		if($("input[name=userPwd]").val() != $("input[name=updatePwd]").val){
-	    			alert("failed");
-	    			return false;
-	    		}
-	    	}
-        
-        </script>
-    </div>
+       </div>
+        <!-- When click the withdraw button Modal--> 
+			<div class="modal" id="deleteForm">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			    
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal">&times;</button>
+			        <h4 class="modal-title"></h4>
+			      </div>
+			      
+			      <div class="modal-body" align="center">
+			        	
+			        	<b>Delete? <br> it can't be recover </b>
+			        	
+			        	<form action="<%= contextPath %>/delete.me" method="post">
+			        	
+			        		password : <input type="password" name="userPwd" required>
+			        		
+			        		<br><br>
+			        		
+			        		<button type="submit" class="btn btn-danger btn-sm">Delete</button>
+			        	
+			        	</form>
+			      </div>
+			      
+				</div>
+			</div>
+     	</div>
+   
 </body>
 </html>

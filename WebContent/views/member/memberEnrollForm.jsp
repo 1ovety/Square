@@ -35,7 +35,7 @@
             <table>
                 <tr>
                     <td>*Email</td>
-                    <td><input type="text" name="userEmail" maxlength="12" required></td>
+                    <td><input type="text" name="userEmail" maxlength="40" required></td>
                     <td><button type="button" class="btn btn-outline-dark">check</button></td>
                 </tr>
                 <tr>

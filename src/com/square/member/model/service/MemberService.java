@@ -6,8 +6,6 @@ import static com.square.common.JDBCTemplate.getConnection;
 import static com.square.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
 import com.square.member.model.dao.MemberDao;
 import com.square.member.model.vo.Member;
@@ -53,27 +51,44 @@ public class MemberService {
 	}
 	
 	
-	public Member updateMember( String userId, String userEmail, String userPwd) {
+	public Member updateMember(Member m) {
 
-		
 		 //update Statement
 			
-			
 			Connection conn = getConnection();
-			int result = new MemberDao().updateMember(conn, userEmail,  userPwd, userId);
+			int result = new MemberDao().updateMember(conn,m);
 			
 			Member updateMem = null;
+			
 			if(result > 0) {
 				commit(conn);
-				updateMem = new MemberDao().selectMember(conn, userId);
+				// search updated member object
+				updateMem = new MemberDao().selectMember(conn,	m.getUserId());
 			
 			} else {
 				rollback(conn);
+				
 			}
 				close(conn);
-				
+		
 				return updateMem;
 		}
+	
+	public int deleteMember(String userId, String userPwd) {
+		Connection conn = getConnection();
+		int result = new MemberDao().deleteMember(conn, userId, userPwd);
+
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+			
+		}
+			close(conn);
+	
+			return result;
+		
+	}
 
 	
 }

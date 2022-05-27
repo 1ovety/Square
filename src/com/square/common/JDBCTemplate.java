@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
-import oracle.jdbc.pool.OracleDataSource;
 
 public class JDBCTemplate {
 	
@@ -32,6 +31,9 @@ public class JDBCTemplate {
 		
 		//decalare Connection
 		Connection conn = null;
+		
+		
+
 		
 		
 		
@@ -69,6 +71,7 @@ public class JDBCTemplate {
 	public static void rollback(Connection conn) {
 		try {
 			if(conn != null && !conn.isClosed()) {
+
 				conn.rollback();
 			}
 		} catch (SQLException e) {
@@ -113,6 +116,7 @@ public class JDBCTemplate {
 		}
 		
 	}
+	
 	
 	
 	
