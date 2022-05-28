@@ -4,7 +4,12 @@
 <% 
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
-
+	
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
+	
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -78,10 +83,25 @@
 
        <div class="paging-area">
         <ul class="pagination justify-content-center">
-            <li class="page-item"><a class="page-link" href="javascript:void(0);">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="javascript:void(0);">1</a></li>
-            <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
-            <li class="page-item"><a class="page-link" href="javascript:void(0);">Next</a></li>
+        
+        	<% if ( currentPage != 1 ) { %>
+            <li class="page-item"><button class="btn btn-light" onclick="location.href='<%=contextPath%>/list.bo?currentPage=<%=currentPage -1%>';">Previous</button></li>
+            <% } %>
+            
+            <% for (int p=startPage; p<=endPage; p++) { %>
+             
+             		<% if( p != currentPage ) { %>
+                        <li class="page-item"><button class="btn btn-light" onclick="location.href='<%= contextPath %>/list.bo?currentPage=';"><%= p %></button></li>
+                    <% } else { %> 
+                     <!-- user can't click the same page  -->  
+                        <li class="page-item"><button class="btn btn-light" disabled><%= p %></button></li>
+            		<% } %>
+            		
+            <% } %>
+            
+            <% if( currentPage != maxPage) {%>
+            <li class="page-item"><button class="btn btn-light" onclick="location.href='<%=contextPath%>/list.bo?currentPage=<%=currentPage + 1 %>';">Next</button></li>
+            <% } %>
           </ul>
        </div>
     </div>

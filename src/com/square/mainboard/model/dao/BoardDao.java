@@ -76,9 +76,9 @@ public class BoardDao {
 			while(rset.next()) {
 				
 				list.add(new Board(rset.getInt("board_no"),
-									rset.getString("category_no"),
+									rset.getString("category_name"),
 									rset.getString("board_title"),
-									rset.getString("board_writer"),
+									rset.getString("user_id"),
 									rset.getInt("count"),
 									rset.getDate("create_date")));
 									
