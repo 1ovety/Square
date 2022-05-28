@@ -242,7 +242,7 @@
             <a class="nav-link" href="">Q&A</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">Board</a>
+            <a class="nav-link" href="<%= contextPath %>/list.bo?currentPage=1">Board</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="">Contact us</a>
@@ -254,42 +254,7 @@
       
       <br><br>
       
-    <!-- slide banner -->
-    <div id="banner" class="carousel slide" data-ride="carousel" align="center">
-    
-      <ul class="carousel-indicators">
-        <li data-target="#banner" data-slide-to="0" class="active"></li>
-        <li data-target="#banner" data-slide-to="1"></li>
-      </ul>
-
-      <div class="carousel-inner">
-
-        <div class="carousel-item active" >
-          <a href="">
-          <img src="resources/" alt="Event1"></a>
-        </div>
-
-        <div class="carousel-item">
-          <a href="">
-          <img src="resources/" alt="Event2"></a>
-        </div>
-
-        <div class="carousel-item">
-            <a href="">
-            <img src="resources/" alt="Event3"></a>
-          </div>
-
-    </div>
-    
-
-      <a class="carousel-control-prev" href="#banner" data-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-      </a>
-      <a class="carousel-control-next" href="#banner" data-slide="next">
-        <span class="carousel-control-next-icon"></span>
-      </a>
-    
-    </div>
+   
 
     
 
