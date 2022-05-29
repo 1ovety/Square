@@ -13,6 +13,7 @@ import java.util.Properties;
 
 import com.square.common.model.vo.PageInfo;
 import com.square.mainboard.model.vo.Board;
+import com.square.mainboard.model.vo.Category;
 
 public class BoardDao {
 
@@ -92,6 +93,37 @@ public class BoardDao {
 		}
 		
 		return list;
+		
+		
+	}
+	
+	public ArrayList<Category> selectCategoryList(Connection conn){
+		
+		// select Statement - > ResultSet (multiRow)
+		
+		ArrayList<Category> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectCategoryList");
+			
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset= pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Category(rset.getInt("category_no"),
+				rset.getString("category_name")));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+		
+		
 		
 		
 	}

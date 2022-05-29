@@ -36,17 +36,20 @@
       <h2>Square</h2>
 
       <!-- only show after sign in-->
+      <% if (loginUser != null ) {%>
       <div align="right" style="width: 1020px;">
-        <a href="">Write</a>
+        <a href="<%= contextPath %>/enrollForm.bo" class="btn btn-secondary sm" >Write</a>
       </div>
-
+		<% } %>
       <br>
       
+      <!-- only show after sign in-  -->
+      <% if(loginUser != null ) { %>
       <table class="table table-hover">
         <thead>
           <tr>
             <th width="70">No. </th>
-            <th width="70">Cateogry</th>
+            <th width="70">Category</th>
             <th width="300">Title</th>
             <th width="100">ID</th>
             <th width="50">Views</th>
@@ -78,7 +81,27 @@
          <% }  %>
         </tbody>
       </table>
-
+		<% } else { %>
+		 <table class="table table-hover">
+        <thead>
+          <tr>
+            <th width="70">No. </th>
+            <th width="70">Category</th>
+            <th width="300">Title</th>
+            <th width="100">ID</th>
+            <th width="50">Views</th>
+            <th width="100">Date</th>
+          </tr>
+        </thead>
+        <tbody>
+        	<tr>
+        		<td colspan ="6"> It can see after sign in </td>
+        	</tr>
+        
+        </tbody>
+        
+        </table>
+		<%} %>
       <br><br>
 
        <div class="paging-area">

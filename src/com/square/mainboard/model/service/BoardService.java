@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import com.square.common.model.vo.PageInfo;
 import com.square.mainboard.model.dao.BoardDao;
 import com.square.mainboard.model.vo.Board;
+import com.square.mainboard.model.vo.Category;
 
 
 public class BoardService {
@@ -30,5 +31,13 @@ public class BoardService {
 		close(conn);
 		return list;
 		
+	}
+	
+	public ArrayList<Category> selectCategoryList(){
+		
+		Connection conn = getConnection();
+		ArrayList<Category> list = new BoardDao().selectCategoryList(conn);
+		close(conn);
+		return list;
 	}
 }

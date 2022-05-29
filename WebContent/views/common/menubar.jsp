@@ -144,9 +144,9 @@
                     <td><input type="password" name="userPwd" required></td>
                 </tr>
                 <tr>
-                    <th colspan="2">
-                        <button type="submit">sign in</button> <!-- type is submit, value that user entered send to server  -->
-                        <button type="button"  onclick="enrollPage();">sign up</button> <!-- type is button  -->
+                    <th colspan="2" >
+                        <button class="btn btn-primary" type="submit">sign in</button> <!-- type is submit, value that user entered send to server  -->
+                        <button class="btn btn-secondary" type="button"  onclick="enrollPage();">sign up</button> <!-- type is button  -->
                     </th>
                 </tr>
             </table>  
