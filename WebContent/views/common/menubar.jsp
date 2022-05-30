@@ -22,6 +22,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap">
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
@@ -33,6 +35,7 @@
     }
 
     #login-form, #user-info{float:right}
+    
     #user-info a{
         text-decoration: none;
         color: black;
@@ -43,7 +46,6 @@
         font-size:13px;
     }
    
-
     .nav-item a{
         color: black;
         font-weight: bold;
@@ -65,6 +67,7 @@
     #banner{
     	background:lightgrey;
     }
+    
     .corp_info1 {
     clear: both;
     width: 930px;
@@ -90,13 +93,59 @@
     list-style-position: initial;
     list-style-image: initial;
     list-style-type: none;
+    }
 
-}
+
+
+    .quick_area .quick_area a h3 em {display: inline;}
+    
+    .quick_area .quick_list a p {display: none;}
+    
+	.quick_area {
+	position: fixed; 
+	top:171px; 
+	right: 0; 
+	width: 60px; 
+	z-index: 100;
+	} 
+
+	
+	.to_top {
+	text-align: center; 
+	background-color: #fff;
+	}
+	
+	.to_top > a {
+	display: block; 
+	height: 45px;
+	box-sizing: border-box; 
+	text-indent: -9999px; 
+	overflow: hidden; 
+	border-left: 1px solid #a3a3a3; 
+	border-bottom: 1px solid #a3a3a3; 
+	background: url(resources/images/ico_totop.png) no-repeat center; 
+	background-size: 50%;
+	}
+	
+	
+	* { margin: 0; padding: 0; }
+	
+	body { font-family: 'Noto Sans KR', sans-serif; height: 100%; font-size: 16px; letter-spacing: -1px; color: #444; white-space: normal; word-wrap: break-word; line-height: 1;}
+
+
+	
+	a { text-decoration: none; }
+	a:link { color: #444; }
+	a:visited { color: #444; }
+	a:hover { color: #444; }
+	a:focus { color: #444; }
+
 </style>
 </head>
 <!-- every page call the menubar.jsp. so add these link in this jsp file, every page can use the bootstrap -->
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+
 
 <!-- jQuery library -->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
@@ -254,6 +303,13 @@
       
       <br><br>
       
+      
+         <!-- wrap -->
+    <!--quick list start-->
+    <div class="quick_area">
+        <p class="to_top"><a href="#">TOP</a></p>
+    </div>
+    <!--quick list end-->
    
 
     
