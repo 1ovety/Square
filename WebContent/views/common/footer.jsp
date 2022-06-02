@@ -10,7 +10,6 @@
 
 	footer {
 	border-top: 1px solid #ddd;
-	width : 1500px;
 	}
 	
 	footer > .foot_area {
@@ -84,12 +83,19 @@
 	height: 74px; 
 	ext-indent: -9999px; 
 	overflow: hidden; 
-	background: url(resources/images/ico_instargram_r.png) no-repeat;
+	background: url(resources/images/linkedin.png) no-repeat;
+
 	}
 	
 	footer > .foot_area > .snslink > li  + li > a {
-	background: url(resources/images/ico_facebook_r.png) no-repeat;
+	background: url(resources/images/github.png) no-repeat;
 	}
+	
+	footer > .foot_area > .snslink > li  + li + li > a {
+	background: url(resources/images/instagram.png) no-repeat;
+	}
+	
+	
 
 </style>
 </head>
@@ -105,19 +111,21 @@
                     <li><a href="#">Privacy Policy</a></li>
                 </ul>
                 <h2>Taeyeon Kim</h2>
-                <p class="addr">Computer Programming T building 
-                <span class="gubun"></span> 
-                <span class="br_line">Phone : <span class="space0">613-265-9943</span> 
-                <span class="gubun">/</span> 
-                <span class="br_line">E-mail : 
-                <span class="space0">kim00451@algonquinlive.com</span>
+                <p class="addr">Computer Programming T building <span class="gubun"></span> 
+                <span class="br_line">Phone : <span class="space0">613-265-9943</span> <span class="gubun">/</span> 
+                <span class="br_line">E-mail : <span class="space0">kim00451@algonquinlive.com</span>
                 </span>
                 </span>
                 </p>
                 <p class="copy box_inner">Copyright(c) Algonquin College all right reserved</p>
                 <ul class="snslink">
+                    <li><a href="https://www.linkedin.com/7-taeyeon-kim/ "></a></li>
+                    <!--<a href="https://www.flaticon.com/free-icons/linkedin" title="linkedin icons">Linkedin icons created by Freepik - Flaticon</a>-->
+                    <li><a href="https://github.com/1ovety/"></a></li>                 
+                    <!-- <a href="https://www.flaticon.com/free-icons/github" title="github icons">Github icons created by riajulislam - Flaticon</a> -->
                     <li><a href="#"></a></li>
-                    <li><a href="#"></a></li>
+                    <!-- <a href="https://www.flaticon.com/free-icons/instagram" title="instagram icons">Instagram icons created by Pixel perfect - Flaticon</a> -->
+                      
                 </ul>
             </div>
         </footer>

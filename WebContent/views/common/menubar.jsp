@@ -121,14 +121,12 @@
 	box-sizing: border-box; 
 	text-indent: -9999px; 
 	overflow: hidden; 
-	border-left: 1px solid #a3a3a3; 
-	border-bottom: 1px solid #a3a3a3; 
+	border: 1px solid #a3a3a3; 
 	background: url(resources/images/ico_totop.png) no-repeat center; 
 	background-size: 50%;
 	}
 	
 	
-	* { margin: 0; padding: 0; }
 	
 	body { font-family: 'Noto Sans KR', sans-serif; height: 100%; font-size: 16px; letter-spacing: -1px; color: #444; white-space: normal; word-wrap: break-word; line-height: 1;}
 
@@ -288,13 +286,16 @@
 
         <ul class="navbar-nav">
             <li class="nav-item">
-            <a class="nav-link" href="">Q&A</a>
+            <a class="nav-link" href="<%= contextPath %>/profile.my">About Taeyeon</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<%= contextPath %>/list.bo?currentPage=1">Board</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">Contact us</a>
+            <a class="nav-link" href="">1st Project</a>
+          </li>
+           <li class="nav-item">
+            <a class="nav-link" href="">2nd Project</a>
           </li>
         </ul>
       

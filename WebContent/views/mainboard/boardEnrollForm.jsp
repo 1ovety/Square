@@ -9,16 +9,20 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+
     .outer{
         width: 1000px;
         height: 550px;
         margin: auto;
         margin-top: 50px;
+
     }
 
     #enroll-form input, #enroll-form textarea{
         width: 100%;
         box-sizing: border-box;
+        
+        
     }
 </style>
 </head>
@@ -36,11 +40,11 @@
 
             <!-- select category, title, content, attachment, writer number -->
 
-            <table align="center">
+            <table align="center" >
 
                 <tr>
-                    <th width="70">
-                        <select name="category" id="">
+                    <th width="70" >
+                        <select name="category" id=""  >
                         
                         	
                             <option value="">category</option>
@@ -53,19 +57,19 @@
                 </tr>
                 <tr>
                     <th>content</th>
-                    <td><textarea name="content" cols="30" rows="10" required></textarea></td>
+                    <td><textarea name="content" cols="80" rows="10" required></textarea></td>
                 </tr>
                 <tr>
                     <th>attachment</th>
-                    <td><input type="file" name="upfile"></td>
+                    <td><input type="file" name="upfile" ></td>
                 </tr>
 
             </table>
 
             <br>
             <div align="center">
-                <button type="submit">upload</button>
-                <button type="reset">delete</button>
+                <button type="submit" class="btn btn-outline-dark">upload</button>
+                <button type="reset" class="btn btn-outline-danger">reset</button>
             </div>
 
 

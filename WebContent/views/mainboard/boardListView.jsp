@@ -38,7 +38,7 @@
       <!-- only show after sign in-->
       <% if (loginUser != null ) {%>
       <div align="right" style="width: 1020px;">
-        <a href="<%= contextPath %>/enrollForm.bo" class="btn btn-secondary sm" >Write</a>
+        <a href="<%= contextPath %>/enrollForm.bo" class="btn btn-outline-dark" >Write</a>
       </div>
 		<% } %>
       <br>
