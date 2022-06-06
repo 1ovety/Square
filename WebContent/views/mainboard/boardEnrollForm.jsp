@@ -45,9 +45,7 @@
                 <tr>
                     <th width="70" >
                         <select name="category" id=""  >
-                        
-                        	
-                            <option value="">category</option>
+                            <option value="" select class="custom-select" >category</option>
                             <% for(Category c : list) { %>
                             <option value="<%= c.getCategoryNo() %>"><%= c.getCategoryName() %></option>
                             <% }  %>

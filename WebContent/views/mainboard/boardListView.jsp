@@ -81,6 +81,18 @@
          <% }  %>
         </tbody>
       </table>
+    	  <script>
+			$(function(){
+				
+				$("tbody>tr").click(function(){
+					location.href = "<%= contextPath %>/detail.bo?bno=" + $(this).children().eq(0).text();
+				})
+			})
+		
+		</script>
+		
+    
+    
 		<% } else { %>
 		 <table class="table table-hover">
         <thead>
@@ -102,6 +114,8 @@
         
         </table>
 		<%} %>
+		
+		
       <br><br>
 
        <div class="paging-area">
