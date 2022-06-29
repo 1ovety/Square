@@ -98,4 +98,29 @@ public class BoardService {
 		return at;
 	}
 	
+	public int updateBoard(Board b, Attachment at) {
+		Connection conn = getConnection();
+		
+		int result1 = new BoardDao().updateBoard(conn, b);
+		
+		int result2 = 1;
+		if(at != null) { // if there is new attachment
+			if(at.getFileNo() != 0) { // if there was already attachment => Attachment Update
+				result2 = new BoardDao().updateAttachment(conn, at);
+			}else { // no old attachment => Attachment Insert
+				result2 = new BoardDao().insertNewAttachment(conn, at);
+			}
+		}
+		
+		if(result1 > 0 && result2 > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result1 * result2; // if there is error one of them should be 0, result 0
+	}
+	
 }

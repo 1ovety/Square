@@ -76,7 +76,7 @@
             <a href="">LIST</a>
 
             <!--match login user and writing user -->
-            <a href="">edit</a>
+            <a href="<%= contextPath %>/updateForm.bo?bno=<%=b.getBoardNo()%>" class="btn btn-warning btn-sm">edit</a>
             <a href="">delete</a>
         </div>
         <br><br> 
