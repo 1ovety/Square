@@ -1,9 +1,6 @@
 package com.square.mainboard.comtroller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,20 +9,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.square.mainboard.model.service.BoardService;
 import com.square.mainboard.model.vo.Board;
-import com.square.mainboard.model.vo.Reply;
 import com.square.member.model.vo.Member;
 
 /**
- * Servlet implementation class AjaxLikeController
+ * Servlet implementation class AjaxDislikeController
  */
-@WebServlet("/like.bo")
-public class AjaxLikeController extends HttpServlet {
+@WebServlet("/dislike.bo")
+public class AjaxDislikeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor. 
      */
-    public AjaxLikeController() {
+    public AjaxDislikeController() {
         // TODO Auto-generated constructor stub
     }
 
@@ -43,10 +39,9 @@ public class AjaxLikeController extends HttpServlet {
 		b.setMno(mno);
 		b.setBoardNo(boardNo);
 		
-		int result = new BoardService().likeCheck(b);
+		int result = new BoardService().likeCheckCancel(b);
 		
 		response.getWriter().print(result);
-		
 	}
 
 	/**
