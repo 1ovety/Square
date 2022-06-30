@@ -69,5 +69,20 @@
 		 WHERE  USER_ID = ?
 		   AND  USER_PWD = ?
 	</entry>
+	
+	<entry key="idCheck"> 
+		SELECT 
+		 		COUNT (*)
+		  FROM MEMBER 
+		 WHERE USER_ID = ? 
+	</entry>
+	
+	<entry key="emailCheck"> 
+		SELECT 
+		 		COUNT (*)
+		  FROM MEMBER 
+		 WHERE USER_EMAIL = ? 
+	</entry>
+	
 
 </properties>

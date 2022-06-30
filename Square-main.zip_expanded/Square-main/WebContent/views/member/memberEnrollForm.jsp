@@ -36,12 +36,12 @@
                 <tr>
                     <td>*Email</td>
                     <td><input type="text" name="userEmail" maxlength="40" required></td>
-                    <td><button type="button" class="btn btn-outline-dark">check</button></td>
+                    <td><button type="button" class="btn btn-outline-dark" onclick="emailCheck();" >check</button></td>
                 </tr>
                 <tr>
                     <td>*id</td>
                     <td><input type="text" name="userId" maxlength="20" required></td>
-                    <td><button type="button" class="btn btn-outline-dark">check</button></td>
+                    <td><button type="button" class="btn btn-outline-dark" onclick="idCheck();" onclick="validatePwd();">check</button></td>
                 </tr>
                 <tr>
                     <td>*password</td>
@@ -50,7 +50,7 @@
                 </tr>
                 <tr>
                     <td>*check password</td>
-                    <td><input type="password" maxlength="15" name="checkPwd" required></td>
+                    <td><input type="password" maxlength="15" name="checkPwd" required onclick="validatePwd();"></td>
                     <td></td>
                 </tr>
                 <tr>
@@ -66,7 +66,7 @@
 
             <br><br>
             <div align="center">
-                <button type="submit" class="btn btn-outline-secondary">sign up</button>
+                <button type="submit" class="btn btn-outline-secondary" disabled>sign up</button>
                 <button type="reset" class="btn btn-outline-danger">cancel</button>
             </div>
 
@@ -74,14 +74,102 @@
 
         </form>
         
+        <script>
+		function idCheck(){
+			
+			// id object to enter 
+			var userId = $("#enroll-form input[name=userId]");
+			
+			$.ajax({
+				url:"idCheck.me",
+				data:{checkId:$userId.val()},
+				success:function(result){
+					
+					if(result == "NNNNN" ) { // impossible to use
+						
+						alert("someone use this Id.");
+						$userId.focus();
+						
+					}else { // possible to use
+						
+						if(confirm("Nice id")){// use the id 
+							
+							$("#enroll-form : submit").removeAttr("disabled"); // button is working
+							$userId.attr("readonly", true); // it can't work
+							
+						}else {// enter again
+							$userId.focus();
+						}
+						
+					}
+					
+					
+					
+					
+				},error:function(){
+					console.log("ajax failed");
+				}
+			});
+			
+			
+			
+			
+		}
+	</script>
+	
+	
+	<script>
+		function emailCheck(){
+			
+			// id object to enter 
+			var userId = $("#enroll-form input[name=email]");
+			
+			$.ajax({
+				url:"email.me",
+				data:{checkId:$userId.val()},
+				success:function(result){
+					
+					if(result == "NNNNN" ) { // impossible to use
+						
+						alert("someone use this email.");
+						$userId.focus();
+						
+					}else { // possible to use
+						
+						if(confirm("Nice email")){// use the id 
+							
+							$("#enroll-form : submit").removeAttr("disabled"); // button is working
+							$userId.attr("readonly", true); // it can't work
+							
+						}else {// enter again
+							$userId.focus();
+						}
+						
+					}
+					
+					
+					
+					
+				},error:function(){
+					console.log("ajax failed");
+				}
+			});
+			
+			
+			
+			
+		}
+	</script>
+	
+	
         <!-- message to check information / if user enter the wrong keyword show the error-->
         <!--
         <script>
-                    $(function() {
+                    function() {
                         var userId = false;
                         var userPwd = false;
                         var checkPwd = false;
-                        var idTag = $("#id");
+                        var idTag = $("#userId");
                         idTag.on("keyup", function() {
                             var idReg = /^[-A-Za-z0-9_]+[-A-Za-z0-9_.]*[@]{1}[-A-Za-z0-9_]+[-A-Za-z0-9_.]*[.]{1}[A-Za-z]{2,5}$/;
                             var image = $("#idimg");
@@ -152,9 +240,9 @@
                         });
                     });
         </script>
-        -->
+         -->
 
-        <!-- 
+        
         <script>
         function validatePwd(){
         		if($("input[name=userPwd]").val() != $("input[name=checkPwd]").val){
@@ -163,8 +251,8 @@
         		}
         	}
         </script>
-        
-         -->
+       
+       
     </div>
 </body>
 </html>
