@@ -81,54 +81,100 @@
         </div>
         <br><br> 
 
+        <div align="center">
+            <a href="<%=contextPath%>/list.bo?currentPage=1" class="btn btn-secondary btn-sm">목록가기</a>
+
+			<% if(loginUser != null && loginUser.getUserId().equals(b.getBoardWriter())){ %>
+	            <!--match sign in user and writer -->
+	            <a href="<%= contextPath %>/updateForm.bo?bno=<%=b.getBoardNo()%>" class="btn btn-warning btn-sm">수정하기</a>
+	            <a href="" class="btn btn-danger btn-sm">삭제하기</a>
+            <% } %>
+        </div>
+
+        <br>
+
         <div id="reply-area">
 
             <table border="1" align="center">
                 <thead>
-                    <!--after sign in-->
-                    <!--
-                    <tr>
-                        <th>comment</th>
-                        <td>
-                            <textarea name="" id="" cols="50" rows="3" style="resize: none;"></textarea>
-                        </td>
-                        <td><button>comment</button></td>
-                    </tr>
-                     -->
-                     <!-- before sign in-->
-                     <tr>
-                        <th>comment</th>
-                        <td>
-                            <textarea name="" id="" cols="50" rows="3" style="resize: none;" readonly>sign in please</textarea>
-                        </td>
-                        <td><button>comment</button></td>
-                    </tr>
+                	<% if(loginUser != null) { %>
+	                    <!--after sign in-->
+	                    <tr>
+	                        <th>comment</th>
+	                        <td>
+	                            <textarea id="replyContent" rows="3" cols="50" style="resize:none"></textarea>
+	                        </td>
+	                        <td><button onclick="insertReply()">reply</button></td>
+	                    </tr>
+                    <% }else { %>
+	                    <!--before sign in-->
+	                    <tr>
+	                        <th>comment</th>
+	                        <td>
+	                            <textarea rows="3" cols="50" style="resize:none" readonly>try sign in</textarea>
+	                        </td>
+	                        <td><button disabled>reply</button></td>
+	                    </tr>
+					<%} %>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>user05</td>
-                        <td>comment comment </td>
-                        <td>datedate</td>
-                    </tr>
-                    <tr>
-                        <td>user05</td>
-                        <td>comment comment </td>
-                        <td>datedate</td>
-                    </tr>
-                    <tr>
-                        <td>user05</td>
-                        <td>comment comment </td>
-                        <td>datedate</td>
-                    </tr>
-                    <tr>
-                        <td>user05</td>
-                        <td>comment comment </td>
-                        <td>datedate</td>
-                    </tr>
-                    
-
+					
                 </tbody>
             </table>
+            
+               <script>
+            	$(function(){
+            		selectReplyList();
+            
+            		setInterval(selectReplyList, 1000);
+            	})
+            	
+            	function insertReply(){
+            		$.ajax({
+            			url:"rinsert.bo",
+            			data:{
+            				content:$("#replyContent").val(),
+            				bno:<%=b.getBoardNo()%>            		
+            			},type:"post",
+            			syccess:function(result){
+            				
+            				if(result > 0){ //reply successed=> request updated reply list
+            					selectReplyList();
+            					$("#replyContent").val("");
+            				}
+            				
+            			},error:function(){
+            				console.log("ajax failed);
+            			}
+            		})
+            	}
+            	function selectReplyList(){
+            		$.ajax({
+            			url:"rlist.bo",
+            			data:{bno:<%=b.getBoardNo()%>},
+            			success:function(list){
+            				
+            				console.log(list);
+            				
+            				
+            				var result = "";
+            				for(var i in list){
+            					result += 	"<tr>"
+				                        +       "<td>" +list[i].replyWriter + "</td>"
+				                        +       "<td>" +list[i].replyContent + "</td>"
+				                        +       "<td>" +list[i].createDate + "</td>"
+				                        +   "</tr>";
+            				}
+            				
+            				$("#reply-area tbody").html(result);
+            				
+            			},error:function(){
+            				console.log("ajax failed");
+            			}
+            		})
+            	}
+       
+            </script>
         </div>
     </div>
 	

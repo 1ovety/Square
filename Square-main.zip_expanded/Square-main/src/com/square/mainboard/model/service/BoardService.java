@@ -13,6 +13,7 @@ import com.square.mainboard.model.dao.BoardDao;
 import com.square.mainboard.model.vo.Attachment;
 import com.square.mainboard.model.vo.Board;
 import com.square.mainboard.model.vo.Category;
+import com.square.mainboard.model.vo.Reply;
 
 
 public class BoardService {
@@ -122,5 +123,34 @@ public class BoardService {
 		
 		return result1 * result2; // if there is error one of them should be 0, result 0
 	}
+	
+	public ArrayList<Attachment> selectAttachmentList(int boardNo){
+		Connection conn = getConnection();
+		ArrayList<Attachment> list = new BoardDao().selectAttachmentList(conn, boardNo);
+		close(conn);
+		return list;
+	}
+	
+	public ArrayList<Reply> selectReplyList(int boardNo){
+		Connection conn = getConnection();
+		ArrayList<Reply> list = new BoardDao().selectReplyList(conn, boardNo);
+		close(conn);
+		return list;
+	}
+	
+	public int insertReply(Reply r) {
+		Connection conn = getConnection();
+		int result = new BoardDao().insertReply(conn,r);
+		
+		if(result > 0) {
+			commit(conn);
+			
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
 	
 }

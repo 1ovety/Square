@@ -15,6 +15,7 @@ import com.square.common.model.vo.PageInfo;
 import com.square.mainboard.model.vo.Attachment;
 import com.square.mainboard.model.vo.Board;
 import com.square.mainboard.model.vo.Category;
+import com.square.mainboard.model.vo.Reply;
 
 public class BoardDao {
 
@@ -341,17 +342,79 @@ public class BoardDao {
 		
 	}
 	
-	public int insertThBoard(Connection conn, Board b) {
-		// insert문 statement => processed row
-		int result = 0;
+	public ArrayList<Attachment> selectAttachmentList(Connection conn, int boardNo){
+		// select statement => ResultSet (multiple rows)
+		ArrayList<Attachment> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("insertThBoard");
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectAttachment");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, b.getBoardTitle());
-			pstmt.setString(2, b.getBoardContent());
-			pstmt.setInt(3, Integer.parseInt(b.getBoardWriter()));
+			pstmt.setInt(1, boardNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Attachment at = new Attachment();
+				at.setChangeName(rset.getString("change_name"));
+				at.setFilePath(rset.getString("file_path"));
+				list.add(at);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+	
+	public ArrayList<Reply> selectReplyList(Connection conn, int boardNo){
+		//select statement => ResultSet (multiple rows)
+		ArrayList<Reply> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectReplyList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1,  boardNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Reply(rset.getInt("reply_no"),
+						           rset.getString("reply_content"),
+						           rset.getString("user_id"),
+						           rset.getString("create_date")));
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+		
+	}
+	
+	public int insertReply(Connection conn, Reply r) {
+		//insert statement
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertReply");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, r.getReplyContent());
+			pstmt.setInt(2, r.getRefBoardNo());
+			pstmt.setInt(3, Integer.parseInt(r.getReplyWirter()));
 			
 			result = pstmt.executeUpdate();
 			
@@ -361,40 +424,7 @@ public class BoardDao {
 			close(pstmt);
 		}
 		
-		return result;		
-	}
-	
-	public int insertAttachmentList(Connection conn, ArrayList<Attachment> list) {
-		// insert statement sever times  => processed row
-		int result = 0;
-		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("insertAttachmentList"); // incomplete sql
-		
-		
-		try {
-			
-			for(Attachment at : list) {
-				// create pstmt object with incomplete sql
-				pstmt = conn.prepareStatement(sql);
-				
-				// make it complete
-				pstmt.setString(1, at.getOriginName());
-				pstmt.setString(2, at.getChangeName());
-				pstmt.setString(3, at.getFilePath());
-				pstmt.setInt(4, at.getFileLevel());
-				
-				// run  => recieve result
-				result = pstmt.executeUpdate();
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		
 		return result;
-		
 	}
 	
 	
