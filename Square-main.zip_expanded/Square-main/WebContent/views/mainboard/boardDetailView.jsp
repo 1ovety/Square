@@ -43,10 +43,11 @@
                 <td><%= b.getBoardWriter() %></td>
                 <th>write date</th>
                 <td><%= b.getCreateDate() %></td>
+                <td><%= b.getMno() %></td>
             </tr>
             <tr>
                 <th>content</th>
-                <td colspan="3">
+                <td colspan="4">
                     <p style="height: 200px;">
                         <%= b.getBoardContent() %>
                     </p>
@@ -54,7 +55,7 @@
             </tr>
             <tr>
                 <th>Attachment</th>
-                <td colspan="3">
+                <td colspan="4">
                 	<!--No Attachment -->
                 	<% if(at == null) { %>
                 		No attachment
@@ -174,6 +175,43 @@
             		})
             	}
        
+            </script>
+            
+            <script>
+            function like_func(){
+            	  var frm_read = $('#frm_read');
+            	  var boardno = $('#boardno', frm_read).val();
+            	  //var mno = $('#mno', frm_read).val();
+            	  //console.log("boardno, mno : " + boardno +","+ mno);
+            	  
+            	  $.ajax({
+            	    url: "../liketo/like.do",
+            	    type: "GET",
+            	    cache: false,
+            	    dataType: "json",
+            	    data: 'boardno=' +boardno,
+            	    success: function(data) {
+            	      var msg = '';
+            	      var like_img = '';
+            	      msg += data.msg;
+            	      alert(msg);
+            	      
+            	      if(data.like_check == 0){
+            	        like_img = "./images/dislike.png";
+            	      } else {
+            	        like_img = "./images/like.png";
+            	      }      
+            	      $('#like_img', frm_read).attr('src', like_img);
+            	      $('#like_cnt').html(data.like_cnt);
+            	      $('#like_check').html(data.like_check);
+            	    },
+            	    error: function(request, status, error){
+            	      alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+            	    }
+            	  });
+            	}
+
+            
             </script>
         </div>
     </div>

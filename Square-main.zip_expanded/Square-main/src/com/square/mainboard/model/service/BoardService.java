@@ -152,5 +152,32 @@ public class BoardService {
 		return result;
 	}
 	
+	public int likeCheck (Board b) {
+		Connection conn = getConnection();
+		int result = new BoardDao().likeCheck(conn, b);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+	}
+	
+	public int likeCheckCancel (Board b) {
+		Connection conn = getConnection();
+		int result = new BoardDao().likeCheck(conn, b);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+	}
+	
+	
 	
 }

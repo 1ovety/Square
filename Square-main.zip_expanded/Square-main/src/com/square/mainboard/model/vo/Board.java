@@ -12,11 +12,12 @@ public class Board {
 	private int count;
 	private Date createDate;
 	private String status;
+	private int mno;
 	
 	public Board() {}
 	
 	public Board(int boardNo, int boardType, String categoryNo, String boardTitle, String boardContent,
-			String boardWriter, int count, Date createDate, String status) {
+			String boardWriter, int count, Date createDate, String status, int mno) {
 		super();
 		this.boardNo = boardNo;
 		this.boardType = boardType;
@@ -27,6 +28,7 @@ public class Board {
 		this.count = count;
 		this.createDate = createDate;
 		this.status = status;
+		this.mno = mno;
 	}
 
 	public Board(int boardNo, String categoryNo, String boardTitle, String boardContent, String boardWriter,
@@ -121,13 +123,23 @@ public class Board {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+
+	public int getMno() {
+		return mno;
+	}
+
+	public void setMno(int mno) {
+		this.mno = mno;
+	}
 
 	@Override
 	public String toString() {
 		return "Board [boardNo=" + boardNo + ", boardType=" + boardType + ", categoryNo=" + categoryNo + ", boardTitle="
 				+ boardTitle + ", boardContent=" + boardContent + ", boardWriter=" + boardWriter + ", count=" + count
-				+ ", createDate=" + createDate + ", status=" + status + "]";
+				+ ", createDate=" + createDate + ", status=" + status + ", mno=" + mno + "]";
 	}
+
 	
 	
 }

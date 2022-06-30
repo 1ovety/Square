@@ -427,6 +427,47 @@ public class BoardDao {
 		return result;
 	}
 	
+	public int likeCheck (Connection conn, Board b) {
+		// update statement => processed row
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("likeCheck");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, b.getMno());
+			pstmt.setInt(1, b.getBoardNo());
+		
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int likeCheckCancel (Connection conn, Board b) {
+		// update statement => processed row
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("likeChackCancel");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, b.getMno());
+			pstmt.setInt(1, b.getBoardNo());
+		
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
 	
 	
 	

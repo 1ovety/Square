@@ -200,6 +200,25 @@
 			  )
 		  
 	</entry>
+	
+	<entry key="likCheck">
+			UPDATE
+				   liketo    	
+			   SET like_check = like_check + 1     
+	         WHERE mno= ?
+	           AND boardno= ?  
+	</entry>
+	
+	<entry key="likeCheckCancel">
+	
+			  UPDATE liketo    
+			     SET like_check = 0    
+			   WHERE mno= ? 
+			     AND boardno= ? 
+			     
+	
+	</entry>
+	
 
 
 </properties>
